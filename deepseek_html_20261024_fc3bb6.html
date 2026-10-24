@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шпаргалка по спискам Python — для ученицы</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1e2b3c;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0, 20, 30, 0.08);
+            padding: 2.5rem 2.2rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0e3b4e;
+            border-left: 8px solid #2e9aff;
+            padding-left: 1.2rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #4e6478;
+            margin-bottom: 2rem;
+            padding-left: 1.9rem;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 1.2rem;
+        }
+
+        .subhead span {
+            background: #e8f0fe;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1363a5;
+            margin-right: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem;
+            color: #1e3b4f;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "📌";
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.6rem 0 0.6rem;
+            color: #0f4c6b;
+            font-weight: 600;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .card {
+            background: #f9fcff;
+            border: 1px solid #d9e6f2;
+            border-radius: 20px;
+            padding: 1.4rem 1.2rem;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 18px rgba(46, 154, 255, 0.08);
+            border-color: #b6d6f0;
+        }
+
+        .method-name {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background: #1e2b3c;
+            color: #e3f0ff;
+            display: inline-block;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.8rem;
+            border: 1px solid #2d4b64;
+        }
+
+        .desc {
+            font-size: 0.96rem;
+            color: #1f3a4b;
+        }
+
+        .desc strong {
+            color: #0b4b6b;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background: #eef3fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #b12e3c;
+            border: 1px solid #d4e0ed;
+            white-space: nowrap;
+        }
+
+        pre {
+            background: #0f1a24;
+            color: #deecf9;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 1rem 0 1.2rem;
+            border-left: 6px solid #2e9aff;
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            white-space: pre;
+        }
+
+        .note {
+            background: #fff9e0;
+            border-left: 6px solid #f5b342;
+            padding: 0.9rem 1.4rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            font-size: 0.98rem;
+        }
+
+        .note::before {
+            content: "💡 ";
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .warning {
+            background: #ffefef;
+            border-left: 6px solid #e05a5a;
+            padding: 0.9rem 1.4rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-size: 1.2rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #deeaf7;
+            color: #145388;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.15rem 0.7rem;
+            border-radius: 30px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        hr {
+            margin: 2rem 0 0.5rem;
+            border: none;
+            border-top: 2px dotted #cbdae8;
+        }
+
+        ul, ol {
+            padding-left: 1.6rem;
+            margin: 0.7rem 0 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.45rem;
+        }
+
+        .footer {
+            margin-top: 2.8rem;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #6c8298;
+            background: #edf3fa;
+            padding: 1rem 1.5rem;
+            border-radius: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.6rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+                padding-left: 0.8rem;
+            }
+            .subhead {
+                padding-left: 0.8rem;
+            }
+            pre {
+                font-size: 0.8rem;
+                padding: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Списки в Python</h1>
+    <div class="subhead">
+        <span>шпаргалка</span> создание, добавление, удаление, поиск и другие полезные штуки
+    </div>
+
+    <!-- Что такое список -->
+    <h2>Что такое список?</h2>
+    <p style="margin-bottom: 0.8rem;">Список — это упорядоченная коллекция элементов. Внутри могут быть числа, строки, другие списки и даже разные типы вместе. Списки <strong>изменяемые</strong> — можно добавлять, удалять и заменять элементы.</p>
+
+    <pre><code># Создание списков
+fruits = ["яблоко", "банан", "вишня"]
+numbers = [10, 20, 30, 40]
+mixed = [1, "два", 3.0, True]
+empty = []                    # пустой список
+nested = [[1, 2], [3, 4]]     # список списков</code></pre>
+
+    <div class="note">
+        В Python списки пишутся в квадратных скобках <code>[ ]</code>, элементы разделяются запятыми. Порядок элементов сохраняется.
+    </div>
+
+    <!-- Основные операции и методы -->
+    <h2>Добавление элементов</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="method-name">append(x)</div>
+            <div class="desc"><strong>Добавляет один элемент</strong> в конец списка. Меняет исходный список.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2]
+a.append(3)
+# a → [1, 2, 3]</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">extend(iterable)</div>
+            <div class="desc"><strong>Добавляет несколько элементов</strong> из другого списка (или строки, кортежа) в конец.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2]
+a.extend([3, 4])
+# a → [1, 2, 3, 4]</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">insert(i, x)</div>
+            <div class="desc"><strong>Вставляет элемент x</strong> на позицию с индексом i. Остальные сдвигаются вправо.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [10, 20, 30]
+a.insert(1, 15)
+# a → [10, 15, 20, 30]</code></pre>
+        </div>
+    </div>
+
+    <h2>Удаление элементов</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="method-name">remove(x)</div>
+            <div class="desc"><strong>Удаляет первый элемент</strong> со значением x. Если такого нет — ошибка <code>ValueError</code>.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2, 3, 2]
+a.remove(2)
+# a → [1, 3, 2]</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">pop([i])</div>
+            <div class="desc"><strong>Удаляет и возвращает</strong> элемент по индексу i (по умолчанию последний).</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [10, 20, 30]
+x = a.pop()   # x = 30, a = [10,20]
+y = a.pop(0)  # y = 10, a = [20]</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">del a[i]</div>
+            <div class="desc"><strong>Удаляет элемент</strong> по индексу или срез. Не возвращает значение.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [5, 6, 7, 8]
+del a[1]     # a → [5, 7, 8]
+del a[0:2]   # удалить срез</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">clear()</div>
+            <div class="desc"><strong>Очищает весь список</strong>, делает его пустым.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2, 3]
+a.clear()
+# a → []</code></pre>
+        </div>
+    </div>
+
+    <!-- Поиск и информация -->
+    <h2>Поиск, индексы и длина</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="method-name">index(x)</div>
+            <div class="desc">Возвращает <strong>индекс первого вхождения</strong> элемента x. Ошибка, если не найден.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = ["a", "b", "c"]
+i = a.index("b")  # i = 1</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">count(x)</div>
+            <div class="desc">Считает, <strong>сколько раз</strong> элемент x встречается в списке.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2, 2, 3]
+n = a.count(2)   # n = 2</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">len(a)</div>
+            <div class="desc">Встроенная функция — <strong>длина списка</strong> (количество элементов).</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [10, 20, 30]
+print(len(a))    # 3</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">in / not in</div>
+            <div class="desc">Проверка наличия элемента в списке. Возвращает <code>True</code> или <code>False</code>.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2, 3]
+if 2 in a: print("есть")</code></pre>
+        </div>
+    </div>
+
+    <h2>Сортировка и изменение порядка</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="method-name">sort()</div>
+            <div class="desc"><strong>Сортирует список на месте</strong> (по возрастанию). Можно указать <code>reverse=True</code> для убывания.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [3, 1, 2]
+a.sort()          # [1, 2, 3]
+a.sort(reverse=True) # [3, 2, 1]</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">reverse()</div>
+            <div class="desc"><strong>Разворачивает список</strong> (меняет порядок на обратный).</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2, 3]
+a.reverse()      # [3, 2, 1]</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">sorted(a)</div>
+            <div class="desc"><strong>Возвращает новый отсортированный список</strong>, исходный не меняется.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [3, 1, 2]
+b = sorted(a)    # b=[1,2,3], a без изменений</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">copy()</div>
+            <div class="desc">Создаёт <strong>поверхностную копию</strong> списка. Полезно, чтобы не менять оригинал.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2, 3]
+b = a.copy()     # b — новый список</code></pre>
+        </div>
+    </div>
+
+    <div class="warning">
+        <strong>Важно:</strong> методы <code>append()</code>, <code>remove()</code>, <code>sort()</code>, <code>reverse()</code>, <code>clear()</code> и <code>insert()</code> изменяют сам список и возвращают <code>None</code>. Не пиши <code>a = a.append(5)</code> — так ты потеряешь список!
+    </div>
+
+    <!-- Срезы -->
+    <h2>Срезы (часть списка)</h2>
+    <p>С помощью срезов можно получать подсписки, а также изменять или удалять сразу несколько элементов.</p>
+    <pre><code>a = [0, 1, 2, 3, 4, 5]
+
+# Получение среза
+b = a[1:4]      # [1, 2, 3]  (с 1 по 3, не включая 4)
+c = a[:3]       # [0, 1, 2]  (с начала до 2)
+d = a[3:]       # [3, 4, 5]  (с 3 до конца)
+e = a[::2]      # [0, 2, 4]  (каждый второй)
+f = a[::-1]     # [5, 4, 3, 2, 1, 0] (разворот)
+
+# Изменение через срез
+a[1:3] = [10, 20]   # a → [0, 10, 20, 3, 4, 5]
+a[2:4] = []         # удалить элементы с индексами 2 и 3</code></pre>
+
+    <h2>Полезные штуки</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="method-name">max() / min()</div>
+            <div class="desc">Максимальный и минимальный элемент списка.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [5, 1, 9]
+print(max(a))  # 9
+print(min(a))  # 1</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">sum()</div>
+            <div class="desc">Сумма всех чисел в списке.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2, 3]
+print(sum(a))  # 6</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">list()</div>
+            <div class="desc">Превращает строку (или другой итерируемый объект) в список.</div>
+            <pre style="margin:0.6rem 0 0;"><code>s = "привет"
+chars = list(s) # ['п','р','и','в','е','т']</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">+ (конкатенация)</div>
+            <div class="desc">Объединяет два списка в новый.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [1, 2]
+b = [3, 4]
+c = a + b    # [1,2,3,4]</code></pre>
+        </div>
+        <div class="card">
+            <div class="method-name">* (повторение)</div>
+            <div class="desc">Повторяет список несколько раз.</div>
+            <pre style="margin:0.6rem 0 0;"><code>a = [0] * 3
+# [0, 0, 0]</code></pre>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Примеры использования -->
+    <h2>Примеры для закрепления</h2>
+    <h3>1. Добавляем и удаляем</h3>
+    <pre><code>tasks = ["учёба", "спорт", "чтение"]
+tasks.append("отдых")        # ["учёба", "спорт", "чтение", "отдых"]
+tasks.remove("спорт")        # ["учёба", "чтение", "отдых"]
+tasks.insert(0, "завтрак")   # ["завтрак", "учёба", "чтение", "отдых"]
+last = tasks.pop()           # last = "отдых", список без него</code></pre>
+
+    <h3>2. Поиск и проверка</h3>
+    <pre><code>numbers = [8, 3, 15, 3, 7]
+print(3 in numbers)          # True
+print(numbers.count(3))      # 2
+print(numbers.index(15))     # 2</code></pre>
+
+    <h3>3. Сортировка и копия</h3>
+    <pre><code>grades = [4, 5, 3, 4, 5]
+copy_grades = grades.copy()
+grades.sort()
+print(grades)        # [3, 4, 4, 5, 5]
+print(copy_grades)   # [4, 5, 3, 4, 5] (не изменился)</code></pre>
+
+    <div class="note">
+        Запомни: <strong>append</strong> — в конец, <strong>remove</strong> — удалить по значению, <strong>pop</strong> — удалить по индексу (и вернуть). Если нужно удалить по индексу, но без возврата — используй <code>del</code>.
+    </div>
+
+    <!-- Мини-таблица -->
+    <h2>Коротко: что возвращают методы</h2>
+    <ul>
+        <li><code>append(x)</code> → <code>None</code> (меняет список)</li>
+        <li><code>remove(x)</code> → <code>None</code> (меняет список)</li>
+        <li><code>pop(i)</code> → удалённый элемент</li>
+        <li><code>index(x)</code> → индекс (число)</li>
+        <li><code>count(x)</code> → количество (число)</li>
+        <li><code>sort()</code> → <code>None</code> (сортирует на месте)</li>
+        <li><code>reverse()</code> → <code>None</code> (разворачивает на месте)</li>
+        <li><code>copy()</code> → новый список</li>
+        <li><code>clear()</code> → <code>None</code> (очищает)</li>
+    </ul>
+
+    <div class="footer">
+        Шпаргалка по спискам Python · учись с удовольствием! ✨
+    </div>
+</div>
+</body>
+</html>
